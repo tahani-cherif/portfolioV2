@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #185fa5;
+  color: #fff;
+}
+
+/* Hero entrance */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-up {
+  opacity: 0;
+  animation: fade-up 0.8s ease-out forwards;
+}
+
+/* Floating photo */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Rotating gradient ring */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Background blobs */
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+.blob {
+  animation: blob 12s ease-in-out infinite;
+}
+
+/* Typewriter cursor */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.cursor {
+  display: inline-block;
+  width: 2px;
+  margin-left: 2px;
+  background: currentColor;
+  animation: blink 1s step-end infinite;
+}
+
+/* Cards and list items appearing (filters, tabs) */
+@keyframes pop-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.pop-in {
+  opacity: 0;
+  animation: pop-in 0.45s ease-out forwards;
+}
+
+/* Mobile menu */
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: none; }
+}
+.menu-in {
+  animation: menu-in 0.2s ease-out;
+}
+
+/* "Available" dot */
+@keyframes ping {
+  75%, 100% { transform: scale(2.2); opacity: 0; }
+}
+.ping {
+  animation: ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Project dialog */
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.modal[open] {
+  animation: modal-in 0.25s ease-out;
+}
+
+/* Soft light that follows the mouse on cards */
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgba(56, 189, 248, 0.12), transparent 60%);
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* Turn animations off for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .fade-up, .reveal, .pop-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
